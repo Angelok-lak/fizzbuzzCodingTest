@@ -111,6 +111,8 @@ STATUS 200 OK
 ---
 
 Afin de garantir l'efficacité et la qualité du code j'ai décider d'implémenter des tests unitaires sur toute la logique de gestion des entrées de la fonctions fizzbuzz afin d'en tester tout les cas, le traitement avec des paramètres valide étant toujours identique en fonction paramètres.
+
+Les tests réalisés se trouvent dans le fichier `fizzbuzz/fizzbuzz_test.go`
 <br />
 <br />
 

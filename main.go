@@ -17,7 +17,6 @@ func init() {
 
 func main() {
 	logger.InfoLogger.Println("Starting server on port 8080")
-	log.Println("Starting server on port 8080")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/fizzbuzz", handler.FizzbuzzHandler)
