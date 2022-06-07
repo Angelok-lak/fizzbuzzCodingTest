@@ -141,6 +141,10 @@ fizzbuzz
 └───logger
 │   │   logger.go
 │
+└───router
+│   │   router.go
+│   │   middleware.go
+│
 └───stats
 │   │   stats.go
 ```
