@@ -3,6 +3,7 @@ package main
 import (
 	"fizzbuzz/handler"
 	"fizzbuzz/logger"
+	"fizzbuzz/middleware"
 
 	"log"
 	"net/http"
@@ -16,11 +17,18 @@ func init() {
 }
 
 func main() {
-	logger.InfoLogger.Println("Starting server on port 8080")
+	port := 8000
+
+	logger.InfoLogger.Println("Starting server on port", port)
 
 	r := mux.NewRouter()
-	r.HandleFunc("/fizzbuzz", handler.FizzbuzzHandler)
+
+	checkedRoutes := r.PathPrefix("/").Subrouter()
+
+	checkedRoutes.HandleFunc("/fizzbuzz", handler.FizzbuzzHandler)
 	r.HandleFunc("/stats", handler.StatsHandler)
+
+	checkedRoutes.Use(middleware.ValidatingMiddleware)
 
 	log.Fatal(http.ListenAndServe(":8000", r))
 }

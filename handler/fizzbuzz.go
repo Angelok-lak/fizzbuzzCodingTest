@@ -26,11 +26,9 @@ func FizzbuzzHandler(w http.ResponseWriter, r *http.Request) {
 	// check extracted struct params
 	fizzbuzzParams, err := fizzbuzz.CheckParams(s)
 	if err != nil {
-		if err != nil {
-			logger.ErrorLogger.Println(err)
-			http.Error(w, err.Error(), http.StatusBadRequest)
-			return
-		}
+		logger.ErrorLogger.Println(err)
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	}
 
 	// run fizzbuzz algorithm
@@ -47,6 +45,8 @@ func FizzbuzzHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(response)
 }
